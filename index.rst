@@ -1,6 +1,6 @@
 
-Novena 
-============
+Documentation Main Page
+=========================
 
 Contents:
 

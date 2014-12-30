@@ -82,9 +82,13 @@ a tt {
 }
 
 .sphinxsidebar {
-    padding-top: 10em;
+    padding-top: 1em;
     opacity: 0.65;
     font-size: 0.9rem;
+}
+
+.logo {
+    padding-bottom: 0.5em;
 }
 
 .sphinxsidebar:hover {

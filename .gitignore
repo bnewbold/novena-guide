@@ -6,3 +6,5 @@
 .*
 *.tmp
 *.old
+
+_build

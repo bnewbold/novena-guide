@@ -1,14 +1,23 @@
 
-Documentation Main Page
+Documentation Contents
 =========================
-
-Contents:
 
 .. toctree::
     :maxdepth: 2
 
-About This Document
----------------------
+    quickstart-desktop
+    quickstart-board
+    tasks
+    hardware
+    default-distro
+    fpga-hacking
+    porting
+    source-licensing
 
-.. include:: README.txt
+About This Guide
+-------------------------------
+
+This is sphinx documentation. Build with ``make html``.
+
+The web version is hosted on readthedocs using git hooks for autogeneration.
 

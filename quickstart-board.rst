@@ -1,7 +1,16 @@
 Quickstart: Just the Board
 =============================
 
-.. note:: Before you begin...
+.. figure:: /img/novena-unbox-board-pvt2a.jpg
+   :align: center
+   :alt: Novena PVT2 just-the-board unboxing, Dec 2014
+   :width: 100%
+   :target: _images/novena-unbox-board-pvt2a.jpg
+
+   *Novena PVT2 Just-The-Board unboxing, December 2014*
+
+.. topic:: Before you begin...
+
     You will need a 5v USB-FTDI cable and a computer to work from (as a
     terminal). You will also need an Ethernet cable if you want wired
     networking.

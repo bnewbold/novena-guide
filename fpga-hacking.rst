@@ -17,6 +17,6 @@ Run these commands from a Novena with the GPBB attached::
     git clone https://github.com/bunnie/novena-gpbb-example
     cd novena-gpbb-example
     make -j4
-    sudo ./configure.sh novena_fpga
+    sudo ./configure.sh novena_fpga.bit
     sudo ./novena-gpbb -v
 

@@ -17,6 +17,16 @@ Run these commands from a Novena with the GPBB attached::
     git clone https://github.com/bunnie/novena-gpbb-example
     cd novena-gpbb-example
     make -j4
-    sudo ./configure.sh novena_fpga
+    sudo ./configure.sh novena_fpga.bit
     sudo ./novena-gpbb -v
+
+Simple test --- toggle four on-board LEDs, connected to I/O port B, pins 0--3::
+
+    sudo ./novena-gpbb -oeb 1 # set port B to drive
+    for BIT in 0 1 2 3; do
+        sudo ./novena-gpbb -p_set b $BIT # Set pin
+        sleep 1
+    done
+    sudo ./novena-gpbb -p b 00 # Write 0x00, i.e. reset all pins
+    sudo ./novena-gpbb -oeb 0 # return port B to tristate mode
 

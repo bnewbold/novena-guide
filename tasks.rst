@@ -4,21 +4,17 @@ Common Tasks
 
 .. note:: This page is a work-in-progress stub.
 
-Installing an SSD
+Running Linux from SATA
+-----------------------------------
+
+Flashing Factory Image to microSD Card
+-------------------------------------------
+
+Pairing a Bluetooth Keyboard
+-------------------------------
+
+Creating a WiFi Hostspot
 ---------------------------
 
-Changing microSD Card
----------------------------
-
-Changing PCIe Card
----------------------------
-
-Installing an Expansion Board
---------------------------------
-
-Replacing Battery Pack
----------------------------
-
-Pairing Bluetooth Device
----------------------------
-
+Compiling and Installing the Kernel
+-------------------------------------

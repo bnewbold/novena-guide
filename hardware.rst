@@ -2,6 +2,8 @@
 The Hardware
 ================
 
+.. note:: This page is a work-in-progress stub.
+
 Specs go here.
 
 Links to errata.

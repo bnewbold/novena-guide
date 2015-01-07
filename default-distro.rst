@@ -1,6 +1,8 @@
 Default Distribution (Debian)
 =====================================
 
+.. note:: This page is a work-in-progress stub.
+
 Flashing Pre-Built Image to New Media 
 --------------------------------------
 

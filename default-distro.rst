@@ -3,12 +3,14 @@ Default Distribution (Debian)
 
 .. note:: This page is a work-in-progress stub.
 
-Flashing Pre-Built Image to New Media 
---------------------------------------
+The wiki has `directions
+<http://kosagi.com/w/index.php?title=Novena_Main_Page#Firmware>`_ on how to
+download, verify, and flash a copy of the original microSD image to recover
+from any mistakes or bugs that would result in a "bricked" or unbootable
+system.
 
-Links to default image; how to dd an image to a card.
+See the "`Novena Image script`_" wiki page for details on building a debian
+image from scratch.
 
-Building from Scratch
-------------------------
+.. _Novena Image script: http://kosagi.com/w/index.php?title=Novena_Image_script
 
-http://kosagi.com/w/index.php?title=Novena_Main_Page#Linux_OS

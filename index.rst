@@ -1,5 +1,5 @@
 
-Documentation Contents
+Table of Contents
 =========================
 
 .. toctree::
@@ -14,10 +14,13 @@ Documentation Contents
     porting
     source-licensing
 
-About This Guide
+About The Guide Sources
 -------------------------------
 
-This is sphinx documentation. Build with ``make html``.
+.. include:: README.txt
 
-The web version is hosted on readthedocs using git hooks for autogeneration.
+Documentation License
+-------------------------------
+
+.. include:: LICENSE
 

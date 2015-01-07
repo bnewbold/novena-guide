@@ -1,13 +1,17 @@
 Quickstart: Just the Board
 =============================
 
+This page runs through the steps of configuring a "bare" Novena mainboard for
+use as a display-less system using the factory-installed microSD card as the
+rootfs media.
+
 .. figure:: /img/novena-unbox-board-pvt2a.jpg
    :align: center
    :alt: Novena PVT2 just-the-board unboxing, Dec 2014
    :width: 100%
    :target: _images/novena-unbox-board-pvt2a.jpg
 
-   *Novena PVT2 Just-The-Board unboxing, December 2014*
+   *Novena PVT2 "Just-The-Board" contents (December 2014)*
 
 .. topic:: Before you begin...
 
@@ -15,9 +19,9 @@ Quickstart: Just the Board
     terminal). You will also need an Ethernet cable if you want wired
     networking.
 
-First attach the FTDI cable with the USB side connected to your host machine
-and the UART end connected to the Novena. The correct UART connection is
-described on the `"Using Novena PVT1" wiki page
+First, before applying power, attach the FTDI cable with the USB side connected
+to your host machine and the UART end connected to the Novena. The correct UART
+connection is described on the `"Using Novena PVT1" wiki page
 <http://kosagi.com/w/index.php?title=Using_Novena_PVT1>`_, and is shown below.
 
 .. TODO:: better image of attached cable
@@ -31,16 +35,18 @@ described on the `"Using Novena PVT1" wiki page
    *Novena PVT2 board with FTDI UART cable attached to console port (note wire
    colors and orientation)*
 
-Before powering on the Novena, open a terminal program on the work machine and
-open the FTDI device using 115200 baud as the speed and "normal" settings for
-everything else (eg, ``8n1``). Eg, on a UNIX machine you could use the
-``screen`` command line program::
+Open a terminal program on the work machine and open the FTDI device using
+115200 baud as the speed and "normal" settings for everything else (eg,
+``8n1``). For example, on a UNIX machine you could use the ``screen`` command
+line program::
 
     screen /dev/ttyUSB0 115200
     # Should be a blank screen until the Novena boots.
     # Type "Ctrl-A" then "k" to quit when you are done.
 
-Finally connect power to the Novena board's DC barrel jack. You should see
+Or you could use minicom or GtkTerm or whatever your favorite is..
+
+Finally, connect power to the Novena board's DC barrel jack. You should see
 u-boot and then kernel boot messages stream out the console.
 
 Eventually you will enter the `"first run" menu system
@@ -59,14 +65,14 @@ for a headless (aka, no display) system might be:
  - Disable graphical logins
 
 Following all the prompts, the system should get configured and you will be
-able to login as the user you created. Horray!
+able to login as the user you created. Blessed be!
 
 The next step will be to get networking up and running so you can upgrade
 and/or install new software.
 
 .. note::
-   You need a wired connection to install required tools before you can use the
-   wireless interfaces.
+   You need a wired connection to install required utilities before you can
+   configure the wireless interfaces.
 
 **Configure Ethernet Networking**
 
@@ -84,7 +90,7 @@ automatically. Test the connection with::
 
 .. TODO:: closed wifi hotspot, passwords
 
-Install packages::
+Install packages (over the wired connection)::
 
     sudo apt-get install wireless-tools iw
 
@@ -124,7 +130,8 @@ install -f`` to fix configuration, then ``sudo apt-get upgrade`` to finish the
 upgrade.
 
 You will almost certainly find youself needing i2c control utilities if you
-will be hacking on the Novena, so now would be a good time to do::
+will be hacking on the Novena, eg to compile the FPGA userland tools, so now
+would be a good time to do::
 
     sudo apt-get install i2c-tools libi2c-dev
 

@@ -145,3 +145,17 @@ div.admondition, div.topic, div.warning, div.note {
 div.note, div.topic {
     background-color: #f4f4f4;
 }
+
+table.docutils {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.docutils td {
+    text-align: center;
+}
+
+table.docutils caption {
+    font-style: italic;
+    font-size: 0.9em;
+}

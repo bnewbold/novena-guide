@@ -15,7 +15,7 @@ rootfs media.
 
 .. topic:: Before you begin...
 
-    You will need a 5v USB-FTDI cable and a computer to work from (as a
+    You will need a 3.3V USB-FTDI cable and a computer to work from (as a
     terminal). You will also need an Ethernet cable if you want wired
     networking.
 
@@ -34,6 +34,16 @@ connection is described on the `"Using Novena PVT1" wiki page
 
    *Novena PVT2 board with FTDI UART cable attached to console port (note wire
    colors and orientation)*
+
+.. figure:: /img/novena-uart-pinout.jpg
+   :align: center
+   :alt: Novena UART Pinout (PVT2)
+   :width: 100%
+   :target: _images/novena-uart-pinout.jpg
+
+   *Pinout of Novena PVT2 board console port, wire colors correspond to default
+   FTDI UART connector*
+
 
 Open a terminal program on the work machine and open the FTDI device using
 115200 baud as the speed and "normal" settings for everything else (eg,

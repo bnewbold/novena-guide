@@ -1,8 +1,11 @@
 Quickstart: Desktop
 ========================
 
-.. note:: This page is a work-in-progress stub.
-   
-The "Desktop" and "Laptop" hardware has not yet shipped as of January 2015.
+.. note:: This page is a work-in-progress stub. Contributions welcome!
 
-See :doc:`quickstart-board`.
+The "Laptop" hardware has not yet shipped as of January 2015.
+
+For now, start with the `Desktop Assembly Guide
+<http://kosagi.com/w/index.php?title=Desktop_User_Guide>`_.
+
+See also :doc:`quickstart-board`.

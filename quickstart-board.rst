@@ -95,19 +95,18 @@ automatically. Test the connection with::
 
 **Configure WiFi Networking**
 
-.. warning:: The below isn't really a great way of doing things (and hasn't
-   actually been confirmed to work), it's just a quick way to test.
+Install packages (over the wired connection); be sure to add your user to the
+netdev group when prompted::
 
-.. TODO:: closed wifi hotspot, passwords
+    sudo apt-get install wireless-tools iw wicd-curses
 
-Install packages (over the wired connection)::
+Run ``wicd-curses`` to connect to a wireless access point. You should be
+presented with a list of detected stations; hit enter to connect to a station,
+or right arrow and then scroll down to enter a WPA/WPA2 password (if
+necessary).
 
-    sudo apt-get install wireless-tools iw
-
-Connect to an open network named, eg, "31C3-open-legacy"::
-
-    sudo iw dev wlan0 connect 31C3-open-legacy
-    sudo dhclient wlan0
+You could also install ``network-manager`` instead of ``wicd`` and use the
+``nmtui`` command to connect to networks and manage wired networking as well.
 
 **After networking is configured**
 

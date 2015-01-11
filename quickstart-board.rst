@@ -144,3 +144,16 @@ would be a good time to do::
 
     sudo apt-get install i2c-tools libi2c-dev
 
+**Fixing Audio**
+
+The version of ``pulseaudio-novena`` that shipped with PVT2 boards (v1.0) has
+some known problems that prevent audio from working correctly out of the box.
+Later versions (v1.1) fix this, but as of January 10th 2015 have not been
+pushed to the Kosagi apt repository as a package update.
+
+As a work around, one can either build a new .deb and install that, or as a
+hack just copy the updated configuration files by hand to the correct paths.
+After this the audio will need to be unmuted and turned up using ``alsamixer``
+as usual. ``mplayer`` works fine for playing audio files from the (headless)
+command line.
+

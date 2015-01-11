@@ -9,7 +9,6 @@ rootfs media.
    :align: center
    :alt: Novena PVT2 just-the-board unboxing, Dec 2014
    :width: 100%
-   :target: _images/novena-unbox-board-pvt2a.jpg
 
    *Novena PVT2 "Just-The-Board" contents (December 2014)*
 
@@ -30,7 +29,6 @@ connection is described on the `"Using Novena PVT1" wiki page
    :align: center
    :alt: Novena UART Console Cable (PVT2)
    :width: 100%
-   :target: _images/novena-uart-console-pvt2-photo.jpg
 
    *Novena PVT2 board with FTDI UART cable attached to console port (note wire
    colors and orientation)*
@@ -39,7 +37,6 @@ connection is described on the `"Using Novena PVT1" wiki page
    :align: center
    :alt: Novena UART Pinout (PVT2)
    :width: 100%
-   :target: _images/novena-uart-pinout.jpg
 
    *Pinout of Novena PVT2 board console port, wire colors correspond to default
    FTDI UART connector*

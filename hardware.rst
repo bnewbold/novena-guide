@@ -17,6 +17,5 @@ How to identify variants (PVT1, PVT2, DVT, etc).
    :align: center
    :alt: Novena PVT2-A Silkscreen
    :width: 100%
-   :target: _images/novena-id-pvt2a.jpg
 
    *Novena PVT2-A Silkscreen*

@@ -101,7 +101,7 @@ After booting into this fresh system, you might want to loop back to the
   apt-cacher-ng)
 - run ``apt-get install -f`` to fix any outstanding apt issues
 - need to add ``deb http://repo.novena.io/repo/ jessie main`` to get kosagi
-  updates
+  updates (if kosagi-repo wasn't installed)
 - if they aren't already installed, run ``apt-get install novena-eeprom
   kosagi-repo novena-disable-ssp novena-usb-hub`` (etc)
 - need to create a user (``adduser``, then ``usermod -G`` to add to sudo group)
@@ -119,3 +119,46 @@ Creating a WiFi Hostspot
 
 Compiling and Installing the Kernel
 -------------------------------------
+
+Using an External HDMI Monitor
+-------------------------------------
+
+These instructions are oriented towards users of a bare mainboard system, not
+Desktop or Laptop folks trying to use a secondary display.
+
+Attaching an HDMI monitor should Just Work as a console login; you'll need a
+USB keyboard or other input device to log in.
+
+TODO: when an external monitor is attached the UART console login stops
+working?
+
+For a simple XFCE-based desktop with common applications, install::
+
+    sudo apt-get install task-xfce-desktop xorg-novena \
+        xserver-xorg-video-armada xserver-xorg-video-armada-etnaviv iceweasel \
+        arandr libetnaviv
+
+.. note::
+    As of January 2015, there seems to be an issue_ with the novena-xorg
+    package that prevents the "armada" driver from working. A workaround is to
+    edit the file ``/usr/share/X11/xorg.conf.d/60-novena.conf`` and add the
+    following lines to the top::
+
+        Section "Files"
+            ModulePath "/usr/lib/xorg/modules/"
+            ModulePath "/usr/lib/arm-linux-gnueabihf/xorg/modules/"
+        EndSection
+
+    If this does not work, you can also try replacing the ``armada`` driver in
+    that file with ``fbdev`` (and comment out the following option lines) to
+    use a (slow) raw framebuffer device instead.
+
+.. _issue: https://github.com/xobs/xorg-novena/issues/2
+
+After future reboots, when the external display is attached you should get a
+friendly GUI login screen.
+
+To start up X without rebooting, run from the console login::
+
+    startxfce4
+

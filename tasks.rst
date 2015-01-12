@@ -11,11 +11,16 @@ These instructions will result in a system that boots u-boot and the Linux
 kernel from the internal microSD slot, then loads the rootfs and entire
 userland operating system from an ext4 partition on a SATA hard disk.
 
+In addition to increased disk capacity, using a SATA disk as a rootfs should
+vastly improve disk I/O and thus general system performance.
+
 Connect the SATA disk while the system is powered down, then boot up from the
 microSD card. Note that there are two SATA-like connectors on the Novena
 mainboard: one is for power from the battery board, and the other is the actual
 SATA connection. It isn't possible to connect to the wrong port because the
-polarities are flipped.
+polarities are flipped. It's strongly recommended to use some form of an
+enclosure or mechanical support to prevent the SATA disk from coming detatched
+while in use, which could obviously result in data loss.
 
 First make sure required tools are installed::
 
@@ -36,20 +41,52 @@ setting (in sata-install.sh) to '--mirror
 "http://127.0.0.1:3142/http.debian.net/debian"' (the default is a debian mirror
 in Hong Kong). We recommend copying ``sata-install.sh`` to ``local-install.sh``
 and making changes there. See the `novena-image.sh documentation
-<http://kosagi.com/w/index.php?title=Novena_Image_script>`_ for more details on
-how to, eg, auto-populate the kosagi signing key into the new image.
+<http://kosagi.com/w/index.php?title=Novena_Image_script>`_ for more details.
+
+To configure the kosagi repositories by default, you can download the
+kosagi-repo debian package and kosagi signing key with::
+
+    # WARNING: this isn't a secure way to verify the signing key
+    gpg --keyserver keyserver.ubuntu.com --recv-keys 03C7B7EC
+    gpg --export 03C7B7EC > kosagi.key
+    # WARNING: https is not available for this server
+    wget http://repo.novena.io/repo/pool/main/k/kosagi-repo/kosagi-repo_1.0-r1_all.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-eeprom/novena-eeprom_2.1-1_armhf.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-firstrun/novena-firstrun_1.4-r1_all.deb
 
 If you are running from the microSD card and have limited space, you'll
 probably want to cull down the default installed package list significantly.
+Here is an example ``local-install.sh``::
+
+    #!/bin/bash
+    if [ -z $1 ]
+    then
+            echo "Usage: $0 [device]"
+            echo "E.g. $0 /dev/sda"
+            exit 1
+    fi
+
+    echo "Constructing a disk image on $1"
+    exec sudo ./novena-image.sh \
+            -d $1 \
+            -m "http://127.0.0.1:3142/http.debian.net/debian" \
+            -t sata \
+            -s jessie \
+            -k kosagi.key \
+            -a kosagi-repo_1.0-r1_all.deb \
+            -a novena-eeprom_2.1-1_armhf.deb \
+            -a novena-firstrun_1.4-r1_all.deb \
+            -l "sudo openssh-server ntp ntpdate \
+                vim powermgmt-base i2c-tools"
 
 When ``local-install.sh`` looks good, run the script::
 
     # WARNING: VERY DANGEROUS COMMAND!
     sudo ./local-install.sh /dev/sda
 
-To actually boot from SATA we need to set a flag in EEPROM. Run
-``novena-eeprom`` and take note of the Features list, then add ``sataroot`` to
-the list and write it::
+To actually boot from SATA you must set a flag in EEPROM. Run ``novena-eeprom``
+and take note of the Features list, then add ``sataroot`` to the list and write
+it::
 
     # Edit this list for your board
     novena-eeprom -f es8328,pcie,gbit,hdmi,eepromoops,sataroot -w

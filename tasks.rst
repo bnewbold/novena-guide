@@ -129,8 +129,9 @@ Desktop or Laptop folks trying to use a secondary display.
 Attaching an HDMI monitor should Just Work as a console login; you'll need a
 USB keyboard or other input device to log in.
 
-TODO: when an external monitor is attached the UART console login stops
-working?
+Note that when an external monitor is attached at boottime, the kernel boot and
+console login stops working on the UART serial connection and is redirected to
+the monitor instead.
 
 For a simple XFCE-based desktop with common applications, install::
 
@@ -158,7 +159,5 @@ For a simple XFCE-based desktop with common applications, install::
 After future reboots, when the external display is attached you should get a
 friendly GUI login screen.
 
-To start up X without rebooting, run from the console login::
-
-    startxfce4
+To start up X without rebooting, run ``startxfce4`` from the console login.
 

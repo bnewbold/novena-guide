@@ -114,6 +114,30 @@ Flashing Factory Image to microSD Card
 Pairing a Bluetooth Keyboard
 -------------------------------
 
+First you need to install the ``firmware-atheros`` package followed by a reboot::
+
+    sudo apt-get install firmware-atheros
+
+After rebooting, you need to enable bluetooth and pair it with your keyboard::
+
+    bluetoothctl -a
+    power on
+    scan on
+
+If everything goes correctly, your bluetooth keyboard should be listed::
+    
+    pair <tab>
+
+Pressing tab will auto-complete for you (if a bluetooth device has been
+found). A number will appear on your screen which you need to type on
+your keyboard and press enter. Now you can connect to your keyboard and
+trust it so that in the future the keyboard will be connected to automatically::
+
+    connect <tab>
+    trust <tab>
+    default-agent
+    quit
+
 Creating a WiFi Hostspot
 ---------------------------
 

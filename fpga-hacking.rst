@@ -11,7 +11,7 @@ The general purpose FPGA on the Novena mainboard is a Xilinx Spartan6 XC6SLX45
 device in the CSG324 BGA package with a ``-3`` speedgrade. It is connected to
 the ARM CPU via SPI for bitstream configuration, via i2c for low-speed
 communications, and via a 16-bit memory interface ("EIM") for faster
-communications. The FPGA also has it's own DRAM chip and an expansion header to
+communications. The FPGA also has its own DRAM chip and an expansion header to
 which extra hardware can be attached.
 
 .. list-table:: Novena FPGA Specifications (from Xilinx)

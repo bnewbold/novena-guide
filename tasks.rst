@@ -166,6 +166,11 @@ needs to be on the small /boot partition on the sd card::
     sudo cp arch/arm/boot/dts/imx6q-novena.dtb /boot/novena.dtb
     sudo cp arch/arm/boot/zImage /boot/zimage
 
+If you have trouble booting the new kernel, hold down the user
+(square) button during boot. That should select the kernel in
+the sd card's recovery partition. If all else fails, reflash
+the sd card with a factory image.
+
 Kosagi's latest kernel build is available in their repo as the
 'linux-image-novena' package. The 'u-boot-novena' package also
 contains a script to maintain the sdcard card partition, so if

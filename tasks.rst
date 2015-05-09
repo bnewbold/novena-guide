@@ -166,6 +166,12 @@ needs to be on the small /boot partition on the sd card::
     sudo cp arch/arm/boot/dts/imx6q-novena.dtb /boot/novena.dtb
     sudo cp arch/arm/boot/zImage /boot/zimage
 
+Kosagi's latest kernel build is available in their repo as the
+'linux-image-novena' package. The 'u-boot-novena' package also
+contains a script to maintain the sdcard card partition, so if
+this is installed, the traditional debian 'fakeroot make-kpkg'
+method will work without the manual copying above.
+
 Using an External HDMI Monitor
 -------------------------------------
 

@@ -144,6 +144,39 @@ Creating a WiFi Hostspot
 Compiling and Installing the Kernel
 -------------------------------------
 
+Check out the novena kernel tree::
+
+    git clone https://github.com/xobs/novena-linux
+
+Check out the version you want to build. For example::
+
+    cd novena-linux
+    git checkout v3.19-novena
+
+Set the default build configuration and compile the kernel::
+
+    make novena_defconfig
+    make -j4
+
+Now that the kernel is compiled, we must install it and its
+corresponding set of modules. For the time being the kernel
+needs to be on the small /boot partition on the sd card::
+
+    sudo make modules_install
+    sudo cp arch/arm/boot/dts/imx6q-novena.dtb /boot/novena.dtb
+    sudo cp arch/arm/boot/zImage /boot/zimage
+
+If you have trouble booting the new kernel, hold down the user
+(square) button during boot. That should select the kernel in
+the sd card's recovery partition. If all else fails, reflash
+the sd card with a factory image.
+
+Kosagi's latest kernel build is available in their repo as the
+'linux-image-novena' package. The 'u-boot-novena' package also
+contains a script to maintain the sdcard card partition, so if
+this is installed, the traditional debian 'fakeroot make-kpkg'
+method will work without the manual copying above.
+
 Using an External HDMI Monitor
 -------------------------------------
 

@@ -138,8 +138,8 @@ trust it so that in the future the keyboard will be connected to automatically::
     default-agent
     quit
 
-Creating a WiFi Access Point (Hotspot)
-------------------------------------------
+Creating a Simple WiFi Access Point (Hotspot)
+----------------------------------------------
 
 .. warning::
 
@@ -178,11 +178,21 @@ In this configuration clients would get DHCP and DNS from Novena on a private
 subnetwork. The Novena would translate the IP addresses on any packets going to
 and from connected clients to the upstream internet.
 
-NetworkManager is the easiest way to create an access point, and it uses the
-NAT scheme by default, with dnsmasq and iptables behind the scenes supplying
-DNS/DHCP and NAT rewriting respectively. If you have a headless (no GUI)
-system, you can control NetworkManager using ``nmtui``, otherwise you can use
-the Gnome GUI.
+NetworkManager is an easiest way to create an access point, and it uses the NAT
+scheme by default, with dnsmasq and iptables behind the scenes supplying
+DNS/DHCP and NAT rewriting respectively. These directions assume you have
+``network-manager`` already installed.
+
+.. note::
+
+   These directions describe a simple mechanism for sharing an internet
+   connection. This is not intentended to be a way to have the Novena run as a
+   secure or robust wireless gateway. In particular, no firewall is in place,
+   your Novena may not be very security hardened by default, the default
+   settings may not play well with some devices or networks, etc, etc.
+
+If you have a headless (no GUI) system, you can control NetworkManager using
+``nmtui``, otherwise you can use the Gnome GUI.
 
 First make sure you have a working wired (ethernet) connection to the internet.
 Then create a new shared WiFi connection. It's recommended to give the

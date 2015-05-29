@@ -2,8 +2,6 @@
 Common Tasks
 ================
 
-.. note:: This page is a work-in-progress stub.
-
 Installing and Running Debian Linux on a SATA Disk
 ----------------------------------------------------
 
@@ -37,8 +35,8 @@ xobs' novena-image repo::
     git clone https://github.com/xobs/novena-image
 
 You'll almost certainly want to install apt-cacher-ng and change the mirror
-setting (in sata-install.sh) to '--mirror
-"http://127.0.0.1:3142/http.debian.net/debian"' (the default is a debian mirror
+setting (in sata-install.sh) to ``--mirror
+"http://127.0.0.1:3142/http.debian.net/debian"`` (the default is a debian mirror
 in Hong Kong). We recommend copying ``sata-install.sh`` to ``local-install.sh``
 and making changes there. See the `novena-image.sh documentation
 <http://kosagi.com/w/index.php?title=Novena_Image_script>`_ for more details.
@@ -97,7 +95,7 @@ disk's ID correct, so you're ready to reboot!
 After booting into this fresh system, you might want to loop back to the
 :doc:`quickstart-board` page. A few errata and things that might pop up:
 
-- need to fix /etc/apt/sources.list to remove localhost prefix (from
+- need to fix ``/etc/apt/sources.list`` to remove localhost prefix (from
   apt-cacher-ng)
 - run ``apt-get install -f`` to fix any outstanding apt issues
 - need to add ``deb http://repo.novena.io/repo/ jessie main`` to get kosagi

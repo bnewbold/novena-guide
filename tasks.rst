@@ -216,6 +216,42 @@ route seems to be disabling the Auto-connect flag in the wlan0-ap settings,
 then run ``sudo nmcli connection down wlan0-ap``, wait a minute, then you
 should be given a list of access points to connect to as usual.
 
+Upgrading the Kernel and u-boot
+-------------------------------------
+
+The Novena kernel developers (aka, xobs) occasionally publishes updates to the
+linux kernel that shipped with the Novena boards. These updates come in the
+form of apt packges (.deb) in the ``repo.novena.io`` repository, but they are
+not automatically installed in the ``/boot`` partition of the onboard microSD
+card, so upgrading these packages and rebooting is not sufficient to upgrade
+your board.
+
+On the other hand, the ``u-boot-novena`` bootloader package *will* install
+itself on ``/boot`` if it is already mounted.
+
+The following steps will install an updated linux kernel and compiled device
+tree file (.dtb) to the appropriate location. It assumes that ``/boot`` has
+been mounted with the microSD first partition (aka, ``/dev/mmcblk0p1``), and
+that the ``repo.novena.io`` repository is configured and keys are installed.
+You will also have to change the ``3.19.0-00270-g3d69696`` filename part to the
+version of the kernel that has actually been fetched.
+
+::
+
+    sudo apt-get update
+    sudo apt-get install u-boot-novena linux-firmware-image-novena \
+        linux-headers-novena linux-image-novena
+    # Backup the old files
+    sudo cp /boot/zimage /boot/zimage.old
+    sudo cp /boot/novena.dtb /boot/novena.dtb.old
+    # Copy in the new files; vmlinuz is already in zimage format
+    sudo cp /usr/share/linux-novena/vmlinuz-3.19.0-00270-g3d69696.dtb /boot/novena.dtb
+    sudo cp /usr/share/linux-novena/vmlinuz-3.19.0-00270-g3d69696 /boot/zimage
+    # Flush filesystem data to the card
+    sync
+    # Reboot!
+    sudo reboot
+
 Compiling and Installing the Kernel
 -------------------------------------
 

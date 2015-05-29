@@ -51,7 +51,20 @@ line program::
     # Should be a blank screen until the Novena boots.
     # Type "Ctrl-A" then "k" to quit when you are done.
 
-Or you could use minicom or GtkTerm or whatever your favorite is..
+Or you could use minicom or GtkTerm or whatever your favorite is. If you get
+access errors, you might need to add yourself to ``dialout`` or ``plugdev`` or
+a group like that, then completely log out and log back in::
+
+    $ ls -l /dev/ttyUSB0
+    crw-rw---- 1 root dialout 188, 0 May 28 21:10 /dev/ttyUSB0
+    $ groups
+    SOMEBODY cdrom floppy audio dip video plugdev netdev
+    $ sudo usermod SOMEBODY -a -G dialout
+    $ groups
+    SOMEBODY cdrom floppy audio dip video plugdev netdev
+    $ # Still need to logout and back in, then:
+    $ groups
+    SOMEBODY dialout cdrom floppy audio dip video plugdev netdev
 
 Finally, connect power to the Novena board's DC barrel jack. You should see
 u-boot and then kernel boot messages stream out the console.

@@ -138,8 +138,75 @@ trust it so that in the future the keyboard will be connected to automatically::
     default-agent
     quit
 
-Creating a WiFi Hostspot
----------------------------
+Creating a WiFi Access Point (Hotspot)
+------------------------------------------
+
+.. warning::
+
+    Unfortunately, the shipped Novena kernel (3.17.0-rc5-00217-gfd79638) does
+    not include netfilter support, which is required for iptables to no
+    NAT IPv4 masquerading. The below instructions will only partially work,
+    and clients won't have actual internet access.
+
+    Upgrading to the 3.19 linux-novena kernel should resolve this problem, as
+    the necessary modules are compiled in by default. You can test by running
+    ``sudo iptables -L``; if this returns an error about kmod and insmod, you
+    need to upgrade.
+
+The PCIe 802.11 WiFi card that ships with the Novena supports Access Point mode
+(AP, also known as 'master' mode), so in addition to connecting to wireless
+gateways and routers as a client, Novena can share connections or even act as a
+router/gateway itself.
+
+If you aren't using the included PCIe card for WiFi (eg, using a USB dongle),
+you'll need to check that your hardware supports AP mode::
+
+    sudo iw list | less
+    # must have 'AP' in "Supported interface modes"
+
+The included PCIe card is based on the Atheros AR9462 chipset.
+
+As background, creating a wireless station and allowing clients to connect is
+relatively simple. Sharing an upstream internet connection (eg, from the wired
+ethernet jacks) is a bit more complicated. There are at least two common
+methods to do so. The first is network bridging, where the Novena routes
+packets between the two network connections without acting as a gateway in any
+other way. In this configuration a pre-existing router would act as a DHCP
+server and gateway to the outside network. In the second configuration Novena
+would act as a router/gateway itself and do NAT (Network Address Translation).
+In this configuration clients would get DHCP and DNS from Novena on a private
+subnetwork. The Novena would translate the IP addresses on any packets going to
+and from connected clients to the upstream internet.
+
+NetworkManager is the easiest way to create an access point, and it uses the
+NAT scheme by default, with dnsmasq and iptables behind the scenes supplying
+DNS/DHCP and NAT rewriting respectively. If you have a headless (no GUI)
+system, you can control NetworkManager using ``nmtui``, otherwise you can use
+the Gnome GUI.
+
+First make sure you have a working wired (ethernet) connection to the internet.
+Then create a new shared WiFi connection. It's recommended to give the
+connection (distinct from the SSID) a short name like "wlan0-ap" instead of the
+default "Wi-Fi connection 1". Select or enter ``wlan0`` as the hardware device.
+In WiFi settings choose an SSID and set the Mode to "Access Point". Add WPA2
+security if you like. In the IPv4 network section change the configuration from
+"Automatic" to "Shared". The other settings can be left as defaults. Make sure
+"Automatically connect" is selected. Save and exit.
+
+The connection may come up automatically after a few minutes. Unlike wired
+connections, the connection will not show up in the list of available WiFi
+connections in the ``nmtui`` "Active a connection" list. You can check
+``/var/log/daemon.log`` for status and error messages, or ``nmcli connection``
+for a list of active connections. You can force NetworkManager to bring up the
+connection with::
+
+    sudo nmcli connection up wlan0-ap
+    # where 'wlan0-ap' is the connection name you chose earlier
+
+To shutdown the access point and return Novena to client mode, the easiest
+route seems to be disabling the Auto-connect flag in the wlan0-ap settings,
+then run ``sudo nmcli connection down wlan0-ap``, wait a minute, then you
+should be given a list of access points to connect to as usual.
 
 Compiling and Installing the Kernel
 -------------------------------------

@@ -109,6 +109,13 @@ After booting into this fresh system, you might want to loop back to the
 Flashing Factory Image to microSD Card
 -------------------------------------------
 
+.. note:: This section is a work-in-progress stub.
+
+http://repo.novena.io/novena/images/novena-mmc-disk-r1.img
+
+SHA256: 26d368cb4b3aa43e411703f8c659d3e229deacfe75af38c1f82489dd9af80dbb
+MD5: 6923a145cbdc75b420408fc2d09ba4f8
+
 Pairing a Bluetooth Keyboard
 -------------------------------
 

@@ -112,7 +112,8 @@ Flashing Factory Image to microSD Card
 Pairing a Bluetooth Keyboard
 -------------------------------
 
-First you need to install the ``firmware-atheros`` package followed by a reboot::
+First you need to install the ``firmware-atheros`` package followed by a
+reboot::
 
     sudo apt-get install firmware-atheros
 

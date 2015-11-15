@@ -220,7 +220,7 @@ should be given a list of access points to connect to as usual.
 Upgrading the Kernel and u-boot
 -------------------------------------
 
-The Novena kernel developers (aka, xobs) occasionally publishes updates to the
+The Novena kernel developers (aka, xobs) occasionally publish updates to the
 linux kernel that shipped with the Novena boards. These updates come in the
 form of apt packges (.deb) in the ``repo.novena.io`` repository, but they are
 not automatically installed in the ``/boot`` partition of the onboard microSD

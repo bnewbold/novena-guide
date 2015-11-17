@@ -127,10 +127,43 @@ Flashing Factory Image to microSD Card
 
 .. note:: This section is a work-in-progress stub.
 
-http://repo.novena.io/novena/images/novena-mmc-disk-r1.img
+Fetch the factory microSD image over (insecure!) HTTP::
 
-SHA256: 26d368cb4b3aa43e411703f8c659d3e229deacfe75af38c1f82489dd9af80dbb
-MD5: 6923a145cbdc75b420408fc2d09ba4f8
+    http://repo.novena.io/novena/images/novena-mmc-disk-r1.img
+
+Because this was downloaded over HTTP, it's important to verify the checksums::
+
+    SHA256: 26d368cb4b3aa43e411703f8c659d3e229deacfe75af38c1f82489dd9af80dbb
+    MD5:    6923a145cbdc75b420408fc2d09ba4f8
+
+Connect the microSD card to your machine, eg via USB adapter. The microSD card
+must be at least as large as the disk image (2.3GB for r1 of the image).
+
+.. warning:: Careful! It's easy to overwrite your primary disk image at this
+   step instead of the microSD card.
+
+Assuming you are on a UNIX machine, check which block device (`/dev/sde`,
+`/dev/sdf`, `/dev/mmcblk0`, etc) your card is, ensure that the card is
+unmounted, and then `dd` the image to your card with something like the below;
+replace XYZ with your actual block device::
+
+    lsblk
+    sudo dd if=novena-mmc-disk-r1.img bs=1M of=/dev/sdXYZ
+    sync
+
+After the `sync` command completes you can disconnect the card.
+
+If you like, you could increase the size of the rootfs partition using a tool
+like gparted. If you do so, note that the UUID of the boot partition of the
+microSD card must be ``4e6f764d-03`` to work as "Recovery Mode". If you resize
+any partitions you might need to reset the UUID for the whole disk. For MBR
+partition tables, do this by running, eg, ``fdisk /dev/mmcblk0``, hit ``x``
+(expert mode), ``i`` ("Change ID"), enter ``0x4e6f7653``, then hit ``r``
+("Return to Menu"), and finally ``w`` ("Write to disk``). Careful! If you just
+``dd`` the image and don't touch the parition table this isn't necessary.
+
+For other platforms (Windows, LISP Machine, etc), search around for generic
+directions on writing SD card images.
 
 Pairing a Bluetooth Keyboard
 -------------------------------

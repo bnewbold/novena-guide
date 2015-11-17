@@ -48,9 +48,21 @@ kosagi-repo debian package and kosagi signing key with::
     gpg --keyserver keyserver.ubuntu.com --recv-keys 03C7B7EC
     gpg --export 03C7B7EC > kosagi.key
     # WARNING: https is not available for this server
+    # NOTE: these URLs may need to be updated
     wget http://repo.novena.io/repo/pool/main/k/kosagi-repo/kosagi-repo_1.0-r1_all.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-eeprom/novena-eeprom_2.1-1_armhf.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-firstrun/novena-firstrun_1.4-r1_all.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-eeprom/novena-eeprom_2.3-1_armhf.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-firstrun/novena-firstrun_1.6-r1_all.deb
+    wget http://repo.novena.io/repo/pool/main/p/pulseaudio-novena/pulseaudio-novena_1.1-r1_all.deb
+    wget http://repo.novena.io/repo/pool/main/i/irqbalance-imx/irqbalance-imx_0.56-1ubuntu4-rmk1_armhf.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-debian-support/novena-debian-support_1.1-1_all.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-disable-ssp/novena-disable-ssp_1.1-1_armhf.deb
+    wget http://repo.novena.io/repo/pool/main/n/novena-usb-hub/novena-usb-hub_1.3-r1_armhf.deb
+
+.. comment:: Could also include:
+    wget http://repo.novena.io/repo/pool/main/l/linux-image-novena/linux-image-novena_3.19-novena-r39_armhf.deb
+    wget http://repo.novena.io/repo/pool/main/u/u-boot-novena/u-boot-novena_2014.10.r7-novena.1_armhf.deb
+
+
 
 If you are running from the microSD card and have limited space, you'll
 probably want to cull down the default installed package list significantly.
@@ -72,10 +84,14 @@ Here is an example ``local-install.sh``::
             -s jessie \
             -k kosagi.key \
             -a kosagi-repo_1.0-r1_all.deb \
-            -a novena-eeprom_2.1-1_armhf.deb \
-            -a novena-firstrun_1.4-r1_all.deb \
-            -l "sudo openssh-server ntp ntpdate \
-                vim powermgmt-base i2c-tools"
+            -a novena-eeprom_2.3-1_armhf.deb \
+            -a novena-firstrun_1.6-r1_all.deb \
+            -a pulseaudio-novena_1.1-r1_all.deb \
+            -a irqbalance-imx_0.56-1ubuntu4-rmk1_armhf.deb \
+            -a novena-debian-support_1.1-1_all.deb \
+            -a novena-disable-ssp_1.1-1_armhf.deb \
+            -a novena-usb-hub_1.3-r1_armhf.deb \
+            -l "sudo openssh-server ntp ntpdate vim powermgmt-base i2c-tools"
 
 When ``local-install.sh`` looks good, run the script::
 

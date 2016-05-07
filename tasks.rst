@@ -49,18 +49,18 @@ kosagi-repo debian package and kosagi signing key with::
     gpg --export 03C7B7EC > kosagi.key
     # WARNING: https is not available for this server
     # NOTE: these URLs may need to be updated
-    wget http://repo.novena.io/repo/pool/main/k/kosagi-repo/kosagi-repo_1.0-r1_all.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-eeprom/novena-eeprom_2.3-1_armhf.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-firstrun/novena-firstrun_1.6-r1_all.deb
-    wget http://repo.novena.io/repo/pool/main/p/pulseaudio-novena/pulseaudio-novena_1.1-r1_all.deb
-    wget http://repo.novena.io/repo/pool/main/i/irqbalance-imx/irqbalance-imx_0.56-1ubuntu4-rmk1_armhf.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-debian-support/novena-debian-support_1.1-1_all.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-disable-ssp/novena-disable-ssp_1.1-1_armhf.deb
-    wget http://repo.novena.io/repo/pool/main/n/novena-usb-hub/novena-usb-hub_1.3-r1_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/k/kosagi-repo/kosagi-repo_1.2-r1_all.deb
+    wget http://repo.novena.io/debian/pool/main/n/novena-eeprom/novena-eeprom_2.3-1_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/n/novena-firstrun/novena-firstrun_1.6-r1_all.deb
+    wget http://repo.novena.io/debian/pool/main/p/pulseaudio-novena/pulseaudio-novena_1.1-r1_all.deb
+    wget http://repo.novena.io/debian/pool/main/i/irqbalance-imx/irqbalance-imx_0.56-1ubuntu4-rmk1_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/n/novena-debian-support/novena-debian-support_1.1-1_all.deb
+    wget http://repo.novena.io/debian/pool/main/n/novena-disable-ssp/novena-disable-ssp_1.1-1_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/n/novena-usb-hub/novena-usb-hub_1.3-r1_armhf.deb
 
 .. comment:: Could also include:
-    wget http://repo.novena.io/repo/pool/main/l/linux-image-novena/linux-image-novena_3.19-novena-r39_armhf.deb
-    wget http://repo.novena.io/repo/pool/main/u/u-boot-novena/u-boot-novena_2014.10.r7-novena.1_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/l/linux-image-novena/linux-image-novena_3.19-novena-r39_armhf.deb
+    wget http://repo.novena.io/debian/pool/main/u/u-boot-novena/u-boot-novena_2014.10.r7-novena.1_armhf.deb
 
 
 
@@ -83,7 +83,7 @@ Here is an example ``local-install.sh``::
             -t sata \
             -s jessie \
             -k kosagi.key \
-            -a kosagi-repo_1.0-r1_all.deb \
+            -a kosagi-repo_1.2-r1_all.deb \
             -a novena-eeprom_2.3-1_armhf.deb \
             -a novena-firstrun_1.6-r1_all.deb \
             -a pulseaudio-novena_1.1-r1_all.deb \
@@ -91,7 +91,8 @@ Here is an example ``local-install.sh``::
             -a novena-debian-support_1.1-1_all.deb \
             -a novena-disable-ssp_1.1-1_armhf.deb \
             -a novena-usb-hub_1.3-r1_armhf.deb \
-            -l "sudo openssh-server ntp ntpdate vim powermgmt-base i2c-tools"
+            -l "sudo openssh-server ntp ntpdate vim powermgmt-base i2c-tools \
+                libcap-ng0 libglib2.0-0 libbluetooth3 libusb-1.0-0"
 
 When ``local-install.sh`` looks good, run the script::
 
@@ -114,7 +115,7 @@ After booting into this fresh system, you might want to loop back to the
 - need to fix ``/etc/apt/sources.list`` to remove localhost prefix (from
   apt-cacher-ng)
 - run ``apt-get install -f`` to fix any outstanding apt issues
-- need to add ``deb http://repo.novena.io/repo/ jessie main`` to get kosagi
+- need to add ``deb http://repo.novena.io/debian/ jessie main`` to get kosagi
   updates (if kosagi-repo wasn't installed)
 - if they aren't already installed, run ``apt-get install novena-eeprom
   kosagi-repo novena-disable-ssp novena-usb-hub`` (etc)
